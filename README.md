@@ -166,86 +166,94 @@ The Reports and Analytics module provides comprehensive financial insights by ag
 **Base URL:** `localhost:5000/api/`
 
 ### 1. Authentication and User Management
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| POST   | `/auth/sign-up`                  | Registers a new user account and sends verification email                   |
-| GET    | `/auth/verify-user/{token}`      | Verifies user's email using the token sent via email                        |
-| POST   | `/auth/login`                    | Authenticates user and generates access and refresh tokens                  |
-| POST   | `/auth/refresh-token`            | Generates a new access token using a valid refresh token                    |
-| POST   | `/auth/logout`                   | Invalidates the current access token                                        |
-| GET    | `/users                          | Retrieves all users  information(accessible only by admins)                 |
-| GET    | `/users/{id}`                    | Retrieves user profile information                                          |
-| PATCH  | `/users/{id}`                    | Updates user profile information                                            |
-| POST   | `/users/{id}/update-password`    | Updates user's password                                                     |
-| POST   | `/users/{id}/update-email`       | Initiates email change process by sending verification OTPs                 |
-| POST   | `/users/{id}/update-email/confirm` | Confirms email change by verifying OTPs                                   |
-| DELETE | `/users/{id}`                    | Soft deletes user account and related resources                             |
-| POST   | `/auth/reset-password`           | Requests a password reset link for a registered email                       |
-| POST   | `/auth/reset-password-confirm/{token}` | Resets password using token received via email                        |
-| POST   | `/users/{id}/child`              | Creates a new child user linked to parent account                           |
-| GET    | `/users/{id}/child`              | Retrieves child user linked to parent account                               |
-| POST   | `/admin/create`                  | Creates a new admin user (accessible only by admins)                        |
+
+| Method | Endpoint                          | Description                                                      |
+|--------|-----------------------------------|------------------------------------------------------------------|
+| POST   | `/auth/sign-up`                  | Registers a new user account and sends verification email        |
+| GET    | `/auth/verify-user/{token}`      | Verifies user’s email using the token sent via email             |
+| POST   | `/auth/login`                    | Authenticates user and generates access and refresh tokens       |
+| POST   | `/auth/refresh-token`            | Generates a new access token using a valid refresh token         |
+| POST   | `/auth/logout`                   | Invalidates the current access token                             |
+| GET    | `/users`                         | Retrieves all users information (accessible only by admins)      |
+| GET    | `/users/{id}`                    | Retrieves user profile information                               |
+| PATCH  | `/users/{id}`                    | Updates user profile information                                 |
+| POST   | `/users/{id}/update-password`    | Updates user's password                                          |
+| POST   | `/users/{id}/update-email`       | Initiates email change process by sending verification OTPs      |
+| POST   | `/users/{id}/update-email/confirm` | Confirms email change by verifying OTPs                        |
+| DELETE | `/users/{id}`                    | Soft deletes user account and related resources                  |
+| POST   | `/auth/reset-password`           | Requests a password reset link for a registered email            |
+| POST   | `/auth/reset-password-confirm/{token}` | Resets password using token received via email             |
+| POST   | `/users/{id}/child`              | Creates a new child user linked to parent account                |
+| GET    | `/users/{id}/child`              | Retrieves child user linked to parent account                    |
+| POST   | `/admin/create`                  | Creates a new admin user (accessible only by admins)             |
 
 ### 2. Categories
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/categories`                    | Retrieves paginated list of available categories                            |
-| POST   | `/categories`                    | Creates a new custom category                                               |
-| GET    | `/categories/{id}`               | Retrieves a specific category's details                                     |
-| PATCH  | `/categories/{id}`               | Updates a category's name                                                   |
-| DELETE | `/categories/{id}`               | Deletes a category if it has no associated transactions                     |
+
+| Method | Endpoint             | Description                                                  |
+|--------|----------------------|--------------------------------------------------------------|
+| GET    | `/categories`        | Retrieves paginated list of available categories             |
+| POST   | `/categories`        | Creates a new custom category                                |
+| GET    | `/categories/{id}`   | Retrieves a specific category’s details                      |
+| PATCH  | `/categories/{id}`   | Updates a category’s name                                    |
+| DELETE | `/categories/{id}`   | Deletes a category if it has no associated transactions      |
 
 ### 3. Wallets
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/wallets`                       | Retrieves paginated list of available wallets                               |
-| POST   | `/wallets`                       | Creates a new wallet                                                        |
-| GET    | `/wallets/{id}`                  | Retrieves a specific wallet's details                                       |
-| PATCH  | `/wallets/{id}`                  | Updates a wallet's name                                                     |
-| DELETE | `/wallets/{id}`                  | Deletes a wallet (requires zero balance and no associated transactions)     |
+
+| Method | Endpoint           | Description                                                           |
+|--------|--------------------|-----------------------------------------------------------------------|
+| GET    | `/wallets`         | Retrieves paginated list of available wallets                         |
+| POST   | `/wallets`         | Creates a new wallet                                                  |
+| GET    | `/wallets/{id}`    | Retrieves a specific wallet’s details                                 |
+| PATCH  | `/wallets/{id}`    | Updates a wallet’s name                                               |
+| DELETE | `/wallets/{id}`    | Deletes a wallet (requires zero balance and no associated transactions) |
 
 ### 4. Transactions
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/transactions`                  | Retrieves paginated list of transactions with filtering options             |
-| POST   | `/transactions`                  | Creates a new transaction                                                   |
-| GET    | `/transactions/{id}`             | Retrieves details of a specific transaction                                 |
-| PATCH  | `/transactions/{id}`             | Updates a transaction                                                       |
-| DELETE | `/transactions/{id}`             | Soft deletes a transaction                                                  |
+
+| Method | Endpoint              | Description                                                  |
+|--------|-----------------------|--------------------------------------------------------------|
+| GET    | `/transactions`       | Retrieves paginated list of transactions with filtering options |
+| POST   | `/transactions`       | Creates a new transaction                                    |
+| GET    | `/transactions/{id}`  | Retrieves details of a specific transaction                  |
+| PATCH  | `/transactions/{id}`  | Updates a transaction                                        |
+| DELETE | `/transactions/{id}`  | Soft deletes a transaction                                   |
 
 ### 5. Budgets
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/budgets`                       | Retrieves paginated list of budgets with filtering options                  |
-| POST   | `/budgets`                       | Creates a new budget for a specific category, month, and year               |
-| GET    | `/budgets/{id}`                  | Retrieves details of a specific budget                                      |
-| PATCH  | `/budgets/{id}`                  | Updates a budget's amount or category                                       |
-| DELETE | `/budgets/{id}`                  | Soft deletes a budget                                                       |
+
+| Method | Endpoint           | Description                                                       |
+|--------|--------------------|-------------------------------------------------------------------|
+| GET    | `/budgets`         | Retrieves paginated list of budgets with filtering options        |
+| POST   | `/budgets`         | Creates a new budget for a specific category, month, and year     |
+| GET    | `/budgets/{id}`    | Retrieves details of a specific budget                            |
+| PATCH  | `/budgets/{id}`    | Updates a budget’s amount or category                             |
+| DELETE | `/budgets/{id}`    | Soft deletes a budget                                             |
 
 ### 6. Recurring Transactions
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/recurring-transactions`        | Retrieves paginated list of recurring transactions with filtering options   |
-| POST   | `/recurring-transactions`        | Creates a new recurring transaction                                         |
-| GET    | `/recurring-transactions/{id}`   | Retrieves details of a specific recurring transaction                       |
-| PATCH  | `/recurring-transactions/{id}`   | Updates a recurring transaction                                             |
-| DELETE | `/recurring-transactions/{id}`   | Soft deletes a recurring transaction                                        |
+
+| Method | Endpoint                    | Description                                                             |
+|--------|-----------------------------|-------------------------------------------------------------------------|
+| GET    | `/recurring-transactions`   | Retrieves paginated list of recurring transactions with filtering options |
+| POST   | `/recurring-transactions`   | Creates a new recurring transaction                                     |
+| GET    | `/recurring-transactions/{id}` | Retrieves details of a specific recurring transaction                |
+| PATCH  | `/recurring-transactions/{id}` | Updates a recurring transaction                                      |
+| DELETE | `/recurring-transactions/{id}` | Soft deletes a recurring transaction                                 |
 
 ### 7. Inter-wallet Transactions
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/interwallet-transactions`      | Retrieves paginated list of transfers between wallets                       |
-| POST   | `/interwallet-transactions`      | Creates a transfer between wallets                                          |
-| GET    | `/interwallet-transactions/{id}` | Retrieves details of a specific transfer                                    |
-| PATCH  | `/interwallet-transactions/{id}` | Updates a transfer between wallets                                          |
-| DELETE | `/interwallet-transactions/{id}` | Soft deletes a transfer between wallets                                     |
+
+| Method | Endpoint                      | Description                                                  |
+|--------|-------------------------------|--------------------------------------------------------------|
+| GET    | `/interwallet-transactions`   | Retrieves paginated list of transfers between wallets        |
+| POST   | `/interwallet-transactions`   | Creates a transfer between wallets                           |
+| GET    | `/interwallet-transactions/{id}` | Retrieves details of a specific transfer                  |
+| PATCH  | `/interwallet-transactions/{id}` | Updates a transfer between wallets                        |
+| DELETE | `/interwallet-transactions/{id}` | Soft deletes a transfer between wallets                   |
 
 ### 8. Reports and Analytics
-| Method | Endpoint                          | Description                                                                 |
-|--------|-----------------------------------|-----------------------------------------------------------------------------|
-| GET    | `/transactions/summary-report`   | Generates a comprehensive summary report of transactions with date range filtering |
-| GET    | `/transactions/spending-trends`  | Generates category-based spending trends with percentage breakdowns         |
-| GET    | `/transactions/history/export`   | Generates and emails a detailed transaction history report in PDF or CSV format |
+
+| Method | Endpoint                      | Description                                                              |
+|--------|-------------------------------|--------------------------------------------------------------------------|
+| GET    | `/transactions/summary-report`| Generates a comprehensive summary report of transactions with date range filtering |
+| GET    | `/transactions/spending-trends` | Generates category-based spending trends with percentage breakdowns    |
+| GET    | `/transactions/history/export` | Generates and emails a detailed transaction history report in PDF or CSV format |
 
 ---
 
